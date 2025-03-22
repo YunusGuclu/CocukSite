@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Hikayeler | Çocuk Dünyası{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="section-title">
+        <i class="fas fa-book-reader"></i> Hikayeler ve Masallar
+    </h1>
+    
+    <div class="row">
+        {% for hikaye in hikayeler %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <span class="badge-custom mb-2">{{ hikaye.tur|title }}</span>
+                    <h5 class="card-title">{{ hikaye.baslik }}</h5>
+                    <p class="card-text">{{ hikaye.icerik|truncatewords:50 }}</p>
+                    <div class="mt-3">
+                        <small class="text-muted">
+                            <i class="fas fa-user"></i> Yazar: {{ hikaye.yazar }}<br>
+                            <i class="fas fa-clock"></i> Okuma Süresi: {{ hikaye.okuma_suresi }}<br>
+                            <i class="fas fa-child"></i> Yaş Grubu: {{ hikaye.yas_grubu }}
+                        </small>
+                    </div>
+                    <a href="#" class="fun-button w-100 mt-3">
+                        <i class="fas fa-book-open"></i> Hikayeyi Oku
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

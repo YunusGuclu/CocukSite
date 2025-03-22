@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Bilmeceler | Çocuk Dünyası{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="section-title">
+        <i class="fas fa-puzzle-piece"></i> Bilmeceler ve Tekerlemeler
+    </h1>
+    
+    <div class="row">
+        {% for bilmece in bilmeceler %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <span class="badge-custom mb-2">{{ bilmece.tur }}</span>
+                    <h5 class="card-title">Bilmece #{{ forloop.counter }}</h5>
+                    <p class="card-text">{{ bilmece.soru }}</p>
+                    {% if bilmece.ipucu %}
+                    <p class="text-muted"><small>İpucu: {{ bilmece.ipucu }}</small></p>
+                    {% endif %}
+                    <button class="fun-button w-100" onclick="gosterCevap(this)">
+                        <i class="fas fa-lightbulb"></i> Cevabı Göster
+                    </button>
+                    <p class="cevap mt-3" style="display: none;">{{ bilmece.cevap }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function gosterCevap(button) {
+        const cevap = button.nextElementSibling;
+        if (cevap.style.display === "none") {
+            cevap.style.display = "block";
+            button.innerHTML = '<i class="fas fa-eye-slash"></i> Cevabı Gizle';
+        } else {
+            cevap.style.display = "none";
+            button.innerHTML = '<i class="fas fa-lightbulb"></i> Cevabı Göster';
+        }
+    }
+</script>
+{% endblock %}

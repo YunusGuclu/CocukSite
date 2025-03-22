@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ deney.baslik }} | Çocuk Dünyası{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">{{ deney.baslik }}</h1>
+            
+            {% if deney.resim_url %}
+            <img src="{{ deney.resim_url }}" class="img-fluid mb-4" alt="{{ deney.baslik }}">
+            {% endif %}
+            
+            <div class="mt-3 mb-3">
+                <span class="badge-custom">⏱️ Süre: {{ deney.sure }}</span>
+            </div>
+
+            <div class="mb-4">
+                <h5 class="mb-3">📝 Deney Açıklaması:</h5>
+                <p class="card-text">{{ deney.aciklama }}</p>
+            </div>
+
+            {% if deney.malzemeler %}
+            <div class="mb-4">
+                <h5 class="mb-3">🧪 Gerekli Malzemeler:</h5>
+                <p>{{ deney.malzemeler|linebreaks }}</p>
+            </div>
+            {% endif %}
+
+            {% if deney.adimlar %}
+            <div class="mb-4">
+                <h5 class="mb-3">📋 Deney Adımları:</h5>
+                <p>{{ deney.adimlar|linebreaks }}</p>
+            </div>
+            {% endif %}
+
+            {% if deney.sonuc %}
+            <div class="mb-4">
+                <h5 class="mb-3">🎯 Beklenen Sonuç:</h5>
+                <p>{{ deney.sonuc }}</p>
+            </div>
+            {% endif %}
+
+            {% if deney.guvenlik_notu %}
+            <div class="alert alert-warning">
+                <h5>⚠️ Güvenlik Notu:</h5>
+                <p>{{ deney.guvenlik_notu }}</p>
+            </div>
+            {% endif %}
+
+            {% if deney.video_url %}
+            <div class="mt-4">
+                <h5 class="mb-3">🎥 Video:</h5>
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ deney.video_url }}" allowfullscreen></iframe>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

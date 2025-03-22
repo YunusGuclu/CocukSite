@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Yemek Tarifleri | Çocuk Dünyası{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="section-title">
+        <i class="fas fa-utensils"></i> Çocuk Dostu Yemek Tarifleri
+    </h1>
+    
+    <div class="row">
+        {% for tarif in tarifler %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if tarif.resim_url %}
+                <img src="{{ tarif.resim_url }}" class="card-img-top" alt="{{ tarif.isim }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ tarif.isim }}</h5>
+                    <div class="mb-3">
+                        <span class="badge-custom">{{ tarif.zorluk }}</span>
+                        <span class="badge-custom ms-2">{{ tarif.hazirlama_suresi }}</span>
+                    </div>
+                    <p class="card-text">
+                        <strong>Malzemeler:</strong><br>
+                        {{ tarif.malzemeler|linebreaks|truncatewords:30 }}
+                    </p>
+                    <div class="mt-3">
+                        <small class="text-muted">
+                            <i class="fas fa-clock"></i> Pişirme: {{ tarif.pisirme_suresi }}<br>
+                            <i class="fas fa-clock"></i> Hazırlık: {{ tarif.hazirlama_suresi }}
+                        </small>
+                    </div>
+                    <a href="#" class="fun-button w-100 mt-3">
+                        <i class="fas fa-cookie-bite"></i> Tarifi Gör
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

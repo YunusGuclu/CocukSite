@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}El Sanatları | Çocuk Dünyası{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="section-title">
+        <i class="fas fa-paint-brush"></i> El Sanatları Projeleri
+    </h1>
+    
+    <div class="row">
+        {% for proje in projeler %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if proje.resim_url %}
+                <img src="{{ proje.resim_url }}" class="card-img-top" alt="{{ proje.proje_adi }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ proje.proje_adi }}</h5>
+                    <div class="mb-3">
+                        <span class="badge-custom">{{ proje.zorluk }}</span>
+                        <span class="badge-custom ms-2">{{ proje.yas_grubu }}</span>
+                    </div>
+                    <p class="card-text">
+                        <strong>Malzemeler:</strong><br>
+                        {{ proje.malzemeler|linebreaks }}
+                    </p>
+                    <a href="#" class="fun-button w-100">
+                        <i class="fas fa-tools"></i> Projeye Başla
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
